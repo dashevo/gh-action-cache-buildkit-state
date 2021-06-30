@@ -13,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/strophy/gh-action-cache-buildkit-state/issues"
   },
-  "homepage": "https://github.com/strophy/gh-action-cache-buildkit-state#readme"
+  "homepage": "https://github.com/strophy/gh-action-cache-buildkit-state#readme",
+  "dependencies": {
+    "@actions/core": "^1.4.0"
+  }
 }
