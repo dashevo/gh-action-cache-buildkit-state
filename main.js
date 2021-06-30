@@ -14,7 +14,9 @@ async function run() {
   await execAsync(`docker run --rm \
     --volumes-from ${ builder } \
     -v ${ path }:/cache \
-    alpine /bin/sh -c "cd / && tar xf /cache/buildkit-state.tar && echo Cache restored successfully"`);
+    alpine /bin/sh -c "cd / && tar xf /cache/buildkit-state.tar"`);
+  
+  core.info('Cache restored successfully');
 }
 
 async function post() {
@@ -23,7 +25,9 @@ async function post() {
   await execAsync(`docker run --rm \
     --volumes-from ${ builder } \
     -v ${ path }:/cache \
-    alpine /bin/sh -c "cd / && tar cf /cache/buildkit-state.tar /var/lib/buildkit && echo Cache archived successfully"`);
+    alpine /bin/sh -c "cd / && tar cf /cache/buildkit-state.tar /var/lib/buildkit"`);
+  
+  core.info('Cache archived successfully');
 }
 
 // check if isPost is present in the action state
