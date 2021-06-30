@@ -9,6 +9,6 @@ inputs:
     description: 'maximum cache size'
 
 runs:
-  using: 'node14'
+  using: 'node12'
   main: 'main.js'
   post: 'main.js'
