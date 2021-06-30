@@ -19,7 +19,7 @@ async function run() {
 
     core.info('Cache restored successfully');
   } catch (error) {
-    core.info(`Cache restore failed: ${ error }`)
+    core.error(`Cache restore failed: ${ error }`)
   }
 }
 
@@ -34,7 +34,7 @@ async function post() {
 
     core.info('Cache archived successfully');
   } catch (error) {
-    core.info(`Cache archive failed: ${ error }`);
+    core.error(`Cache archive failed: ${ error }`);
   }
 }
 
