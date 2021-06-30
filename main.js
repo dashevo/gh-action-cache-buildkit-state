@@ -9,25 +9,33 @@ const builder = core.getInput('builder');
 const path = core.getInput('cache-path');
 
 async function run() {
-  await execAsync('docker buildx stop');
+  try {
+    await execAsync('docker buildx stop');
 
-  await execAsync(`docker run --rm \
-    --volumes-from ${ builder } \
-    -v ${ path }:/cache \
-    alpine /bin/sh -c "cd / && tar xf /cache/buildkit-state.tar"`);
-  
-  core.info('Cache restored successfully');
+    await execAsync(`docker run --rm \
+      --volumes-from ${ builder } \
+      -v ${ path }:/cache \
+      alpine /bin/sh -c "cd / && tar xf /cache/buildkit-state.tar"`);
+
+    core.info('Cache restored successfully');
+  } catch (error) {
+    core.info(`Cache restore failed: ${ error }`)
+  }
 }
 
 async function post() {
-  await execAsync(`docker buildx prune --force --keep-storage ${ core.getInput('cache-max-size')}`)
+  try {
+    await execAsync(`docker buildx prune --force --keep-storage ${ core.getInput('cache-max-size')}`)
 
-  await execAsync(`docker run --rm \
-    --volumes-from ${ builder } \
-    -v ${ path }:/cache \
-    alpine /bin/sh -c "cd / && tar cf /cache/buildkit-state.tar /var/lib/buildkit"`);
-  
-  core.info('Cache archived successfully');
+    await execAsync(`docker run --rm \
+      --volumes-from ${ builder } \
+      -v ${ path }:/cache \
+      alpine /bin/sh -c "cd / && tar cf /cache/buildkit-state.tar /var/lib/buildkit"`);
+
+    core.info('Cache archived successfully');
+  } catch (error) {
+    core.info(`Cache archive failed: ${ error }`);
+  }
 }
 
 // check if isPost is present in the action state
