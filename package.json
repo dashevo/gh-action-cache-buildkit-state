@@ -1,0 +1,17 @@
+{
+  "name": "@strophy/gh-action-cache-buildkit-state",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strophy/gh-action-cache-buildkit-state.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/strophy/gh-action-cache-buildkit-state/issues"
+  },
+  "homepage": "https://github.com/strophy/gh-action-cache-buildkit-state#readme"
+}
