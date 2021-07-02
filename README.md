@@ -2,7 +2,7 @@
 
 ## Usage
 
-```
+```yml
 - name: Set up Docker BuildX
   id: buildx
   uses: docker/setup-buildx-action@v1
