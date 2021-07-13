@@ -13,7 +13,7 @@
 - name: Enable buildkit cache
   uses: actions/cache@v2
   with:
-    path: buildkit-cache/buildkit-state.tar
+    path: /tmp/buildkit-cache/buildkit-state.tar
     key: ${{ runner.os }}-buildkit-${{ github.sha }}
     restore-keys: |
       ${{ runner.os }}-buildkit-
@@ -22,6 +22,6 @@
   uses: dashevo/gh-action-cache-buildkit-state@v1
   with:
     builder: buildx_buildkit_${{ steps.buildx.outputs.name }}0
-    cache-path: $(pwd)/buildkit-cache
+    cache-path: /tmp/buildkit-cache
     cache-max-size: 2g
 ```
