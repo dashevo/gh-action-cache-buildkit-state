@@ -19,7 +19,7 @@ async function post() {
     core.info(`stdout: ${stdout}`);
     core.error(`stderr: ${stderr}`);
 
-    var {stdout, stderr} = await execAsync(`docker buildx prune --force --keep-storage ${core.getInput("cache-max-size")}`);
+    var {stdout, stderr} = await execAsync(`docker buildx prune --force --filter type=regular`);
     core.info(`stdout: ${stdout}`);
     core.error(`stderr: ${stderr}`);
 
