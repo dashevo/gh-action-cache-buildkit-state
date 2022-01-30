@@ -20,7 +20,7 @@ async function post() {
       core.error(`stderr: ${stderr}`)
     })
     core.info("step2")
-    await execAsync(`docker buildx du -v`, {}, function(error,stdout,stderr) {
+    await execAsync(`docker buildx du --verbose`, {}, function(error,stdout,stderr) {
       if (error) {
         core.error(`exec error: ${error}`)
         return
