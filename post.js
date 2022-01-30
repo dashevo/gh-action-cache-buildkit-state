@@ -10,7 +10,18 @@ const path = core.getInput('cache-path');
 
 async function post() {
   try {
+    await execAsync(`docker system df -v`, {}, function(error,stdout,stderr) {
+      if (error) {
+        console.error(`exec error: ${error}`)
+        return
+      }
+      console.log(`stdout: ${stdout}`)
+      console.error(`stderr: ${stderr}`)
+    })
+
     await execAsync(`docker buildx prune --force --keep-storage ${ core.getInput('cache-max-size')}`)
+
+
 
     await execAsync(`docker run --rm \
       --volumes-from ${ builder } \
