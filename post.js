@@ -11,7 +11,7 @@ const path = core.getInput("cache-path");
 async function post() {
   try {
     core.info("Before pruning:");
-    var {stdout, stderr} = await execAsync(`docker exec ${builder} buildctl du`);
+    var {stdout, stderr} = await execAsync(`docker buildx du`);
     core.info(`stdout:\n${stdout}\n`);
     if (stderr) { core.error(`stderr:\n${stderr}\n`); }
 
@@ -37,11 +37,11 @@ async function post() {
 
     core.info("After pruning:");
 
-    var {stdout, stderr} = await execAsync(`docker exec ${builder} buildctl du`);
+    var {stdout, stderr} = await execAsync(`docker buildx du`);
     core.info(`stdout:\n${stdout}\n`);
     if (stderr) { core.error(`stderr:\n${stderr}\n`); }
 
-    var {stdout, stderr} = await execAsync(`docker exec ${builder} buildctl du -v`);
+    var {stdout, stderr} = await execAsync(`docker buildx du -v`);
     core.info(`stdout:\n${stdout}\n`);
     if (stderr) { core.error(`stderr:\n${stderr}\n`); }
 
