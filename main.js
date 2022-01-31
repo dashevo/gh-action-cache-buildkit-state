@@ -19,7 +19,7 @@ async function run() {
 
     core.info('Cache restored successfully');
 
-    await execAsync('docker buildx start');
+    await execAsync('docker buildx inspect --bootstrap');
     var {stdout, stderr} = await execAsync(`docker buildx du --verbose`);
     core.info(`Cache now contains:\n${stdout}\n`);
   } catch (error) {
