@@ -18,8 +18,12 @@ async function run() {
       alpine /bin/sh -c "cd / && tar xf /cache/buildkit-state.tar"`);
 
     core.info('Cache restored successfully');
+
+    await execAsync('docker buildx inspect --bootstrap');
+    var {stdout, stderr} = await execAsync(`docker buildx du --verbose`);
+    core.info(`Cache now contains:\n${stdout}\n`);
   } catch (error) {
-    core.error(`Cache restore failed: ${ error }`)
+    core.error(`Cache restore failed: ${ error }`);
   }
 }
 
