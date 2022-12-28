@@ -1,14 +1,14 @@
-name: 'Load buildkit state from cache'
-description: 'Copies state from cache into specified buildkit builder'
+name: "Load buildkit state from cache"
+description: "Copies state from cache into specified buildkit builder"
 inputs:
   builder:
-    description: 'buildkit builder to use'
+    description: "buildkit builder to use"
   cache-path:
-    description: 'path to restored cache file'
+    description: "path to restored cache file"
   cache-max-size:
-    description: 'maximum cache size'
+    description: "maximum cache size"
 
 runs:
-  using: 'node12'
-  main: 'main.js'
-  post: 'post.js'
+  using: "node16"
+  main: "main.js"
+  post: "post.js"
