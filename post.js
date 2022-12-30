@@ -31,9 +31,10 @@ async function post() {
     core.info(`stdout:\n${stdout}\n`);
     if (stderr) { core.error(`stderr:\n${stderr}\n`); }
 
-    var {stdout, stderr} = await execAsync(`docker buildx prune --force --filter type=exec.cachemount --keep-storage ${core.getInput('cache-max-size')}`);
-    core.info(`stdout:\n${stdout}\n`);
-    if (stderr) { core.error(`stderr:\n${stderr}\n`); }
+    core.info('skipping exec.cachemount pruning')
+    // var {stdout, stderr} = await execAsync(`docker buildx prune --force --filter type=exec.cachemount --keep-storage ${core.getInput('cache-max-size')}`);
+    // core.info(`stdout:\n${stdout}\n`);
+    // if (stderr) { core.error(`stderr:\n${stderr}\n`); }
 
     core.info("After pruning:");
 
