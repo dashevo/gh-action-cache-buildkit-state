@@ -1,6 +1,6 @@
 {
   "name": "@strophy/gh-action-cache-buildkit-state",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "",
   "scripts": {
     "lint": "eslint ."
