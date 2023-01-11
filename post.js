@@ -49,7 +49,10 @@ async function post() {
     var {stdout, stderr} = await execAsync(`docker run --rm \
       --volumes-from ${builder} \
       -v ${path}:/cache \
-      alpine /bin/sh -c "cd / && tar cf /cache/buildkit-state.tar var/lib/buildkit"`);
+      alpine /bin/sh -c "cd / && \
+      find var/lib/buildkit -type s -print > /tmp/sockets-to-exclude && \
+      cat /tmp/sockets-to-exclude && \
+      tar cf /cache/buildkit-state.tar -X /tmp/sockets-to-exclude var/lib/buildkit"`);
     core.info(`stdout:\n${stdout}\n`);
     if (stderr) { core.error(`stderr:\n${stderr}\n`); }
 
